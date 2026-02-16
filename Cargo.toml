@@ -1,0 +1,15 @@
+[package]
+name = "glb2fbx"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+gltf = "1.4"
+walkdir = "2.4"
+clap = { version = "4.4", features = ["derive"] }
+anyhow = "1.0"
+fbxcel = { version = "0.9", features = ["writer"] }
+colored = "2.1"
+indicatif = "0.17"
+console = "0.15"
+humantime = "2.1"
