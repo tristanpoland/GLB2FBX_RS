@@ -363,12 +363,223 @@ fn write_fbx_tree(
             .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
     }
 
-    // Write GlobalSettings node
+    // Write GlobalSettings node with proper properties
     {
         writer.new_node("GlobalSettings")
             .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+        
+        // Version
+        {
+            let mut attrs = writer.new_node("Version")
+                .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            attrs.append_i32(1000)
+                .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            drop(attrs);
+            writer.close_node()
+                .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+        }
+        
+        // Properties70
+        {
+            writer.new_node("Properties70")
+                .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            
+            // UpAxis: P: "UpAxis", "int", "Integer", "",1
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("UpAxis")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(1)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // UpAxisSign
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("UpAxisSign")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(1)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // FrontAxis
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("FrontAxis")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(2)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // FrontAxisSign
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("FrontAxisSign")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(1)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // CoordAxis
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("CoordAxis")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(0)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // CoordAxisSign
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("CoordAxisSign")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(1)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // OriginalUpAxis
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("OriginalUpAxis")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(-1)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // OriginalUpAxisSign
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("OriginalUpAxisSign")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("int")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Integer")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_i32(1)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // UnitScaleFactor
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("UnitScaleFactor")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("double")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Number")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_f64(1.0)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            // OriginalUnitScaleFactor
+            {
+                let mut attrs = writer.new_node("P")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("OriginalUnitScaleFactor")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("double")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("Number")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_string_direct("")
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                attrs.append_f64(1.0)
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+                drop(attrs);
+                writer.close_node()
+                    .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            }
+            
+            writer.close_node()
+                .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?; // Close Properties70
+        }
+        
         writer.close_node()
-            .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?;
+            .map_err(|e| anyhow::anyhow!("FBX write error: {:?}", e))?; // Close GlobalSettings
     }
 
     // Write Definitions node
